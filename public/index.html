@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Street Food Marketplace</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="olx-header">
+        <div class="header-top">
+            <div class="logo">
+                <h1>Raw-D FOODS</h1>
+            </div>
+            <div class="location-selector">
+                <select>
+                    <option value="kanpur">Kanpur</option>
+                    <option value="delhi">Delhi</option>
+                    <option value="mumbai">Mumbai</option>
+                    </select>
+            </div>
+            <div class="main-search-bar">
+                <input type="text" id="product-search-main" placeholder="Search for 'onions', 'paneer', 'supplier name'...">
+                <button id="search-btn-main" class="search-icon-btn">&#128269;</button> </div>
+            <div class="header-auth-buttons">
+                <button id="login-btn">Login</button>
+                <button id="sell-btn" class="add-product-btn">+ Add Product</button>
+                <button id="profile-btn" class="hidden"><i class="fas fa-user-circle"></i> Profile</button>
+            </div>
+        </div>
+        <nav class="category-nav">
+           <nav class="category-nav">
+    <button class="nav-button" data-category="all">All Categories</button>
+    <button class="nav-button" data-category="Vegetables">Vegetables</button>
+    <button class="nav-button" data-category="Spices">Spices</button>
+    <button class="nav-button" data-category="Dairy">Dairy</button>
+    <button class="nav-button" data-category="Packaging">Packaging</button>
+    <button class="nav-button" data-category="Grains">Grains</button>
+</nav>
+
+            </nav>
+        <div class="promo-banner">
+            <img src="images/banner (2).jpeg" alt="Promotional Banner">
+        </div>
+    </header>
+
+    <main>
+        <section id="auth-section" class="hidden">
+            <h2 id="auth-title" class="section-title">Login / Register</h2>
+            <p id="auth-description">Please enter your 10-digit mobile number to continue.</p>
+            <div class="auth-form">
+                <input type="text" id="auth-mobile-input" placeholder="e.g., 9876543210" maxlength="10">
+                <button id="auth-continue-btn">Continue</button>
+                <div id="auth-error-message" class="error-message hidden">Please enter a valid 10-digit number.</div>
+            </div>
+        </section>
+
+        <section id="profile-section" class="hidden">
+            <h2 class="section-title">Your Profile</h2>
+            <div id="profile-details">
+                <p><strong>Mobile:</strong> <span id="profile-mobile"></span></p>
+                <p><strong>Role:</strong> <span id="profile-role"></span></p>
+                <div class="profile-input-group">
+                    <label for="profile-name-input">Name:</label>
+                    <input type="text" id="profile-name-input" placeholder="Your Name">
+                </div>
+                <div class="profile-input-group">
+                    <label for="profile-address-input">Address:</label>
+                    <input type="text" id="profile-address-input" placeholder="Your Address">
+                </div>
+                <button id="save-profile-btn">Save Profile</button>
+                <button id="logout-btn" class="logout-btn">Logout</button>
+            </div>
+            <div id="profile-login-prompt" class="hidden">
+                <p>Please login to view your profile details.</p>
+                <button id="login-from-profile-btn" class="role-select-btn">Login Now</button>
+            </div>
+        </section>
+
+        <section id="home-section" class="active-section">
+            <h2 class="section-title">Fresh Recommendations for You</h2>
+            <div id="product-list" class="product-grid">
+                <p>Loading products...</p>
+            </div>
+        </section>
+
+        <section id="product-detail-section" class="hidden">
+            <button id="back-to-home-btn" class="back-btn">&larr; Back to Home</button>
+            <div id="product-details">
+                </div>
+            <div class="chat-container">
+                <h3>Bargain with Supplier</h3>
+                <div id="chat-messages" class="chat-messages">
+                    </div>
+                <div class="chat-input">
+                    <input type="text" id="chat-input-field" placeholder="Type your offer or message (e.g., '₹20/kg')...">
+                    <button id="send-chat-btn">Send Offer</button>
+                </div>
+                <div id="deal-finalized-info" class="deal-info hidden">
+                    <h4>Deal Finalized!</h4>
+                    <p>Final Price: <span id="final-deal-price"></span></p>
+                    <p>Supplier Contact: <span id="supplier-contact"></span></p>
+                    <p>Vendor Contact: <span id="vendor-contact"></span></p>
+                    <p>Distance: <span id="deal-distance"></span></p>
+                    <p><em>(These numbers are for demonstration. In a real app, they would be encrypted until deal finalization.)</em></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="supplier-section" class="hidden">
+            <h2 class="section-title">Supplier Dashboard - Manage Your Products</h2>
+            <div class="product-upload-form">
+                <h3>Add New Product Listing</h3>
+                <input type="text" id="product-name" placeholder="Product Name (e.g., Fresh Onions)" required>
+                <input type="number" id="product-mrp" placeholder="MRP/Base Price (e.g., 25)" required>
+                <input type="text" id="product-unit" placeholder="Unit (e.g., kg, piece, liter)" required>
+                <input type="url" id="product-image" placeholder="Image URL (e.g., https://example.com/onion.jpg)">
+                <button id="add-product-btn">Add Product</button>
+            </div>
+            <div id="supplier-products" class="product-grid">
+                <h3>Your Current Listings</h3>
+                <p>No products listed yet. Add one above!</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
